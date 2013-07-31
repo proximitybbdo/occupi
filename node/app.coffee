@@ -3,19 +3,17 @@
 app = require('express')()
 net = require 'net'
 
-host = '10.132.16.12'
+host = 'localhost'
 port = 2000
 
 io_socket = null
 
 sensor_data = {}
 
+sensor = net.connect {port: port, host: host}, ->
+  return true
 
-client = net.connect {port: port, host: host}, ->
-  # 'connect' listener
-  client.write('world!\r\n')
-
-client.on 'data', (data) ->
+sensor.on 'data', (data) ->
   sensor_data = data.toString()
 
   io.sockets.emit 'status', sensor_data if io_socket?
