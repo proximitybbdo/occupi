@@ -1,0 +1,49 @@
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+  <title>OccuPi</title>
+
+  <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+  <style type="text/css">
+    body {
+      background-color: #ccc;
+      text-transform: uppercase;
+      font-family: 'Lato', arial;
+      color: #fff;
+      font-size: 100;
+    }
+
+    #status {
+      width: 500px;
+      margin: 0 auto;
+      margin-top: 100px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="status">
+    <div id="room">MEETING ROOM KLEINE BIB (<span id="room-id"></span>)</div>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    var socket = io.connect('http://10.100.1.81:3000');
+    socket.on('connect', function(data) { });
+
+    socket.on('status', function (data) {
+      data = JSON.parse(data);
+
+      if(data.occupied == 0) {
+        document.body.style.backgroundColor = '#2ECC71';
+      } else {
+        document.body.style.backgroundColor = '#e74c3c';
+      }
+
+      document.getElementById('room-id').innerHTML = data.room_id;
+    });
+  </script>
+
+</body>
+</html>

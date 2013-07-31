@@ -1,0 +1,11 @@
+{
+  "name": "occupi",
+  "version": "0.0.1",
+  "author": "BBDO <pieter.michels@bbdo.be>",
+  "description": "",
+  "dependencies" : {
+    "express"   : "*",
+    "socket.io" : "*"
+  }
+}
+
