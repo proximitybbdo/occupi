@@ -24,12 +24,12 @@
 <body>
 
   <div id="status">
-    <div id="room">MEETING ROOM KLEINE BIB (<span id="room-id"></span>)</div>
+    <div id="room">MEETING ROOM KLEINE BIB</div>
   </div>
 
   <script src="/socket.io/socket.io.js"></script>
   <script>
-    var socket = io.connect('http://10.100.1.81:3000');
+    var socket = io.connect('http://' + window.location.host);
     socket.on('connect', function(data) { });
 
     socket.on('status', function (data) {
@@ -40,8 +40,6 @@
       } else {
         document.body.style.backgroundColor = '#e74c3c';
       }
-
-      document.getElementById('room-id').innerHTML = data.room_id;
     });
   </script>
 

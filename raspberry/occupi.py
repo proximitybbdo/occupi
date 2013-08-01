@@ -15,7 +15,7 @@ server_ip = '0.0.0.0'
 server_port = 2000
 server_dest = (server_ip, server_port)
 
-time_buffer = 12
+time_buffer = 30
 
 class Logger:
   def __init__(self, message, sys=False):
@@ -37,12 +37,12 @@ def start_loop(in_pin, shared):
       last_time = time()
       in_change = True
 
-      # print 'start state saving on ' + str(last_time)
+      print 'start state saving on ' + str(last_time)
 
     if new_check == in_room and in_room and in_change:
       last_time = time()
 
-      # print 'reset time change because our state is in_room'
+      print 'reset time change because our state is in_room'
 
     current_time = time()
     time_diff = current_time - last_time > time_buffer
